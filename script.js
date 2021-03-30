@@ -25,10 +25,14 @@ const getHtml = async (url) => {
 // writeToFile(url);
 
 async function applyChecklist(url, checklist){
+  //get the website's html and load into Cheerio
   const html = await getHtml(url);
   const $ = cheerio.load(html);
   const responses = {}
 
+  /*
+    invoke each function in checklist{} and if successful, save the SUCCESS value from messages{} in the responses{}.
+  */
   for(const item in checklist){
     const success = await checklist[item]($);
     responses[item] = messages[item][(success ? SUCCESS : ERROR)];
