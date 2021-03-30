@@ -2,6 +2,7 @@ const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const url = 'https://www.fullstackacademy.com/';
 const fs = require('fs');
+const { checklist, messages, SUCCESS, ERROR } = require('./checklist'); 
 
 const getHtml = async (url) => {
   const webpage = await fetch(url);
@@ -23,31 +24,18 @@ const getHtml = async (url) => {
 // }
 // writeToFile(url);
 
-const checkCodeForOneTitleConditional = async (url, conditional) => {
+async function applyChecklist(url, checklist){
   const html = await getHtml(url);
   const $ = cheerio.load(html);
-  const elements = $('title').get();
-  return conditional(elements);
+  const responses = {}
+
+  for(const item in checklist){
+    const success = await checklist[item]($);
+    responses[item] = messages[item][(success ? SUCCESS : ERROR)];
+  }
+
+  console.log(responses);
+  return responses;
 }
 
-const checkCodeForViewportZoomConditional = async (url, conditional) => {
-  const html = await getHtml(url);
-  const $ = cheerio.load(html);
-  const viewport = $('meta[name="viewport"]');
-  console.log(typeof viewport.attr('content'))
-  return conditional(viewport.attr('content'));
-}
-
-const oneTitleCondition = (titles) => titles.length === 1
-const viewportZoomCondition = (viewport) => !(viewport.includes("user-scalable=no") && viewport.includes("user-scalable = no"));
-
-
-//will take URL, conditionalsArray/Obj, 
-async function doEverything(){
-  const responseTitle = await checkCodeForOneTitleConditional(url, oneTitleCondition);
-  const responseViewport = await checkCodeForViewportZoomConditional(url, viewportZoomCondition);
-  console.log(responseTitle && responseViewport)
-  return responseTitle && responseViewport;
-}
-
-doEverything();
+applyChecklist(url, checklist);
