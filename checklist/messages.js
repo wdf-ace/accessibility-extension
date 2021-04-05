@@ -18,8 +18,8 @@ checklistItems.viewportZoom = {
 };
 
 checklistItems.langAttribute = {
-  SUCCESS: `<p>This webpage has identification of the language.</p>`,
-  ERROR: `<p>This webpage hae no identification of the language.</p>`,
+  SUCCESS: `<p>This webpage has an identification of the language.</p>`,
+  ERROR: `<p>This webpage has no identification of the language.</p>`,
 };
 
 module.exports = {
