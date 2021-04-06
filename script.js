@@ -1,34 +1,41 @@
 const fetch = require('node-fetch');
-const $ = require('cheerio');
+const cheerio = require('cheerio');
 const url = 'https://www.fullstackacademy.com/';
+const fs = require('fs');
+const { checklist, messages, SUCCESS, ERROR } = require('./checklist');
 
-// fetch(url)
-//   .then(function (html) {
-//     //success!
-//     console.log(html);
-//     // console.log($('h2', html).length);
-//     // console.log($('big > a', html));
-//   })
-//   .catch(function (err) {
-//     //handle error
-//     console.log('fetch error');
+const getHtml = async (url) => {
+  const webpage = await fetch(url);
+  const html = await webpage.text();
+  return html;
+};
+
+// const showHtml = async (url) => {
+//   const html = await getHtml(url);
+//   console.log(html);
+// }
+//showHtml(url);
+
+// const writeToFile = async (url) => {
+//   const html = await getHtml(url);
+//   fs.writeFile('webpageHtml.html', html, (err) => {
+//     if(err) throw err;
 //   });
+// }
+// writeToFile(url);
 
-fetch(url)
-  .then((res) => res.text())
-  .then((body) => {
-    const h1Obj = $('h1', body).contents();
-    const h1Result = Object.values(h1Obj).filter((elm) => {
-      if (typeof elm.data === 'string') {
-        return elm.data.includes('software');
-      }
-    });
+async function applyChecklist(url, checklist) {
+  const html = await getHtml(url);
+  const $ = cheerio.load(html);
+  const responses = {};
 
-    const imgObj = $('img', body);
-  });
-// var category = $('span')
-//   .filter(function () {
-//     return $(this).text().trim() === 'Category:';
-//   })
-//   .next()
-//   .text();
+  for (const item in checklist) {
+    const success = await checklist[item]($);
+    responses[item] = messages[item][success ? SUCCESS : ERROR];
+  }
+
+  console.log(responses);
+  return responses;
+}
+
+applyChecklist(url, checklist);
