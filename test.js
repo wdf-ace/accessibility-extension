@@ -21,17 +21,34 @@
 //   // console.log(tab);
 // }
 
-let currentURL;
+/* 
+Documentation:
+
+executeScript: https://developer.chrome.com/docs/extensions/reference/tabs/#method-executeScript
+
+injectDetails: https://developer.chrome.com/docs/extensions/reference/extensionTypes/#type-InjectDetails
+*/
+
+// async function getURL(){
+//   let tabs = await chrome.tabs.query(
+//     { active: true, currentWindow: true });
+  
+//   chrome.tabs.executeScript({
+//     code:''
+//   })
+//   document.getElementById('current_url').innerText = tabs[0].url;
+// }
+
+// getURL();
+
+
 
 chrome.tabs.query(
-  { active: true, windowId: chrome.windows.WINDOW_ID_CURRENT },
+  { active: true, currentWindow: true },
   function (tabs) {
-    getCurrentURL(tabs[0].url);
+    document.getElementById('current_url').innerText = tabs[0].url;
+    console.log('IT WORKSS!')
+    chrome.tabs.executeScript(tabs[0].tabId, {file: "script.js"});
   }
 );
 
-function getCurrentURL(tab) {
-  currentURL = tab;
-}
-
-document.getElementById('current_url').innerText = currentURL;

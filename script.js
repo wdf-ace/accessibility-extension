@@ -10,22 +10,9 @@ const getHtml = async (url) => {
   return html;
 };
 
-// const showHtml = async (url) => {
-//   const html = await getHtml(url);
-//   console.log(html);
-// }
-//showHtml(url);
-
-// const writeToFile = async (url) => {
-//   const html = await getHtml(url);
-//   fs.writeFile('webpageHtml.html', html, (err) => {
-//     if(err) throw err;
-//   });
-// }
-// writeToFile(url);
-
 async function applyChecklist(url, checklist){
   //get the website's html and load into Cheerio
+
   const html = await getHtml(url);
   const $ = cheerio.load(html);
   const responses = {};
@@ -42,4 +29,21 @@ async function applyChecklist(url, checklist){
   return responses;
 }
 
+module.exports = applyChecklist;
+
 applyChecklist(url, checklist);
+
+//--------------Old Functions-----------------------------------------------
+// const showHtml = async (url) => {
+//   const html = await getHtml(url);
+//   console.log(html);
+// }
+//showHtml(url);
+
+// const writeToFile = async (url) => {
+//   const html = await getHtml(url);
+//   fs.writeFile('webpageHtml.html', html, (err) => {
+//     if(err) throw err;
+//   });
+// }
+// writeToFile(url);
