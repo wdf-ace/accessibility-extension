@@ -1,7 +1,6 @@
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const url = 'https://www.fullstackacademy.com/';
-const fs = require('fs');
 const { checklist, messages, SUCCESS, ERROR } = require('./checklist');
 
 const getHtml = async (url) => {

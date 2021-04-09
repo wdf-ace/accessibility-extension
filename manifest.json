@@ -3,7 +3,7 @@
   "description": "Build an Extension!",
   "version": "1.0",
   "manifest_version": 3,
-  "permissions": ["activeTab", "tabs"],
+  "permissions": ["activeTab", "tabs", "*://*/*"],
   "action": {
     "default_popup": "popup.html"
   }
