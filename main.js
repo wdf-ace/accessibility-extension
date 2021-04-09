@@ -1,12 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import applyChecklist from './script';
 
 export const Popup = (props) => {
-    return (
-        <div>
-            fhsdjkfhsdujkhfnkjsdhf
-        </div>
-    )
-}
+  applyChecklist();
+  return <div>fhsdjkfhsdujkhfnkjsdhf</div>;
+};
 
-ReactDOM.render(<Popup />, document.getElementById('app'))
+ReactDOM.render(<Popup />, document.getElementById('app'));

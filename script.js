@@ -9,12 +9,13 @@ const getHtml = async (url) => {
   return html;
 };
 
-async function applyChecklist(url, checklist){
+async function applyChecklist(url, checklist) {
   //get the website's html and load into Cheerio
   await chrome.tabs.query(
     { active: true, currentWindow: true },
     async function (tabs) {
-      // document.getElementById('current_url').innerText = tabs[0].url;
+      //   document.getElementById('current_url').innerText = tabs[0].url;
+      console.log(tabs[0].url);
       const html = await getHtml(tabs[0].url);
       const $ = cheerio.load(html);
       const responses = {};
@@ -22,7 +23,7 @@ async function applyChecklist(url, checklist){
       /*
         invoke each function in checklist{} and if successful, save the SUCCESS value from messages{} in the responses{}.
       */
-      for(const item in checklist){
+      for (const item in checklist) {
         const success = await checklist[item]($);
         responses[item] = messages[item][success ? SUCCESS : ERROR];
       }
@@ -33,7 +34,7 @@ async function applyChecklist(url, checklist){
   );
 }
 
-module.exports = applyChecklist;
+export default applyChecklist;
 
 applyChecklist(url, checklist);
 
