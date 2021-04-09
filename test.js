@@ -48,7 +48,7 @@ chrome.tabs.query(
   function (tabs) {
     document.getElementById('current_url').innerText = tabs[0].url;
     console.log('IT WORKSS!')
-    chrome.tabs.executeScript(tabs[0].tabId, {file: "script.js"});
+    // chrome.tabs.executeScript(tabs[0].tabId, {file: "script.js"});
   }
 );
 
