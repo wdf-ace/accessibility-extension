@@ -1,7 +1,6 @@
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const url = 'https://www.fullstackacademy.com/';
-const fs = require('fs');
 const { checklist, messages, SUCCESS, ERROR } = require('./checklist');
 
 const getHtml = async (url) => {
@@ -10,6 +9,36 @@ const getHtml = async (url) => {
   return html;
 };
 
+async function applyChecklist(url, checklist) {
+  //get the website's html and load into Cheerio
+  await chrome.tabs.query(
+    { active: true, currentWindow: true },
+    async function (tabs) {
+      //   document.getElementById('current_url').innerText = tabs[0].url;
+      console.log(tabs[0].url);
+      const html = await getHtml(tabs[0].url);
+      const $ = cheerio.load(html);
+      const responses = {};
+
+      /*
+        invoke each function in checklist{} and if successful, save the SUCCESS value from messages{} in the responses{}.
+      */
+      for (const item in checklist) {
+        const success = await checklist[item]($);
+        responses[item] = messages[item][success ? SUCCESS : ERROR];
+      }
+
+      console.log(responses);
+      return responses;
+    }
+  );
+}
+
+export default applyChecklist;
+
+applyChecklist(url, checklist);
+
+//--------------Old Functions-----------------------------------------------
 // const showHtml = async (url) => {
 //   const html = await getHtml(url);
 //   console.log(html);
@@ -23,19 +52,3 @@ const getHtml = async (url) => {
 //   });
 // }
 // writeToFile(url);
-
-async function applyChecklist(url, checklist) {
-  const html = await getHtml(url);
-  const $ = cheerio.load(html);
-  const responses = {};
-
-  for (const item in checklist) {
-    const success = await checklist[item]($);
-    responses[item] = messages[item][success ? SUCCESS : ERROR];
-  }
-
-  console.log(responses);
-  return responses;
-}
-
-applyChecklist(url, checklist);
