@@ -1,23 +1,31 @@
 const oneTitle = async ($) => {
-  const titles = $('title').get();
-  return titles.length === 1;
+	const titles = $("title").get();
+	return titles.length === 1;
 };
 
 const viewportZoom = async ($) => {
-  const viewport = $('meta[name="viewport"]').attr('content');
-  return !(
-    viewport.includes('user-scalable=no') &&
-    viewport.includes('user-scalable = no')
-  );
+	const viewport = $('meta[name="viewport"]').attr("content");
+	return !(
+		viewport.includes("user-scalable=no") &&
+		viewport.includes("user-scalable = no")
+	);
 };
 
 const langAttribute = async ($) => {
-  const htmlAttr = $('html').attr('lang');
-  return !!htmlAttr;
+	const htmlAttr = $("html").attr("lang");
+	return !!htmlAttr;
+};
+
+const landmarkElements = async ($) => {
+	const landmark = $(
+		"section, nav, article, aside, header, footer, main"
+	).get();
+	landmark.length ? true : false;
 };
 
 module.exports = {
-  oneTitle,
-  viewportZoom,
-  langAttribute,
+	oneTitle,
+	viewportZoom,
+	langAttribute,
+	landmarkElements,
 };
