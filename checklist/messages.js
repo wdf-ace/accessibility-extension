@@ -8,18 +8,18 @@ for (const item of Object.keys(checklist)) {
 }
 
 checklistItems.oneTitle = {
-  SUCCESS: `<p>This webpage has only one <title> tag. </p>`,
-  ERROR: `<p>This webpage has multiple <title> tags. Consider using only one tag to describe the purpose of this webpage. <p>`,
+  SUCCESS: `This webpage has only one <title> tag. `,
+  ERROR: `This webpage has multiple <title> tags. Consider using only one tag to describe the purpose of this webpage. `,
 };
 
 checklistItems.viewportZoom = {
-  SUCCESS: `<p>This webpage has either no or an acceptable viewport zoom. </p>`,
-  ERROR: `<p>This webpage has either disabled or an unacceptable viewport zooms. <p>`,
+  SUCCESS: `This webpage has either no or an acceptable viewport zoom. `,
+  ERROR: `This webpage has either disabled or an unacceptable viewport zooms. `,
 };
 
 checklistItems.langAttribute = {
-  SUCCESS: `<p>This webpage has an identification of the language.</p>`,
-  ERROR: `<p>This webpage has no identification of the language.</p>`,
+  SUCCESS: `This webpage has an identification of the language.`,
+  ERROR: `This webpage has no identification of the language.`,
 };
 
 module.exports = {
