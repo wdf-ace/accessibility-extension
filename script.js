@@ -1,23 +1,22 @@
-const fetch = require('node-fetch');
 const cheerio = require('cheerio');
-const url = 'https://www.fullstackacademy.com/';
 const { checklist, messages, SUCCESS, ERROR } = require('./checklist');
 
-const getHtml = async (url) => {
-  const webpage = await fetch(url);
-  const html = await webpage.text();
-  return html;
-};
+function getHtml(){
+  return document.getElementsByTagName('html')[0].outerHTML;
+}
 
-async function applyChecklist(url, checklist) {
+async function applyChecklist(checklist) {
   //get the website's html and load into Cheerio
   await chrome.tabs.query(
     { active: true, currentWindow: true },
-    async function (tabs) {
-      //   document.getElementById('current_url').innerText = tabs[0].url;
-      console.log(tabs[0].url);
-      const html = await getHtml(tabs[0].url);
-      const $ = cheerio.load(html);
+    async function ([tab]) {
+      //nested array and object destructuring and aliasing
+      const [{result: html}] = await chrome.scripting.executeScript({
+        target: {tabId: tab.id}, 
+        function: getHtml
+      });
+
+      const $ = cheerio.load(html.toString());
       const responses = {};
 
       /*
@@ -36,7 +35,7 @@ async function applyChecklist(url, checklist) {
 
 export default applyChecklist;
 
-applyChecklist(url, checklist);
+applyChecklist(checklist);
 
 //--------------Old Functions-----------------------------------------------
 // const showHtml = async (url) => {
@@ -44,6 +43,14 @@ applyChecklist(url, checklist);
 //   console.log(html);
 // }
 //showHtml(url);
+
+//const fetch = require("node-fetch");
+
+// const getHtml = async (url) => {
+//   const webpage = await fetch(url);
+//   const html = await webpage.text();
+//   return html;
+// };
 
 // const writeToFile = async (url) => {
 //   const html = await getHtml(url);
