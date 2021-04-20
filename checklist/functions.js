@@ -1,9 +1,9 @@
-const oneTitle = async ($) => {
+const oneTitle = ($) => {
   const titles = $('title').get();
   return titles.length === 1;
 };
 
-const viewportZoom = async ($) => {
+const viewportZoom = ($) => {
   const viewport = $('meta[name="viewport"]').attr('content');
   return !(
     viewport.includes('user-scalable=no') &&
@@ -11,7 +11,7 @@ const viewportZoom = async ($) => {
   );
 };
 
-const langAttribute = async ($) => {
+const langAttribute = ($) => {
   const htmlAttr = $('html').attr('lang');
   return !!htmlAttr;
 };

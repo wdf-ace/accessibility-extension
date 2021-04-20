@@ -9,7 +9,7 @@ async function applyChecklist(checklist) {
   //get the website's html and load into Cheerio
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
 
-  //nested array and object destructuring and aliasing
+  //nested array and object destructuring with aliasing
   const [{result: html}] = await chrome.scripting.executeScript({
     target: {tabId: tab.id}, 
     function: getHtml
@@ -22,7 +22,7 @@ async function applyChecklist(checklist) {
     invoke each function in checklist{} and if successful, save the SUCCESS value from messages{} in the responses{}.
   */
   for (const item in checklist) {
-    const success = await checklist[item]($);
+    const success = checklist[item]($);
     responses[item] = messages[item][success ? SUCCESS : ERROR];
   }
 
