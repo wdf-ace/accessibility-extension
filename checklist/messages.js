@@ -1,34 +1,29 @@
-const checklist = require("./functions");
+const checklist = require('./functions');
 const checklistItems = {};
-const SUCCESS = "SUCCESS",
-	ERROR = "ERROR";
+const SUCCESS = 'SUCCESS',
+  ERROR = 'ERROR';
 
 for (const item of Object.keys(checklist)) {
-	checklistItems[item] = null;
+  checklistItems[item] = null;
 }
 
 checklistItems.oneTitle = {
-	SUCCESS: `<p>This webpage has only one <title> tag. </p>`,
-	ERROR: `<p>This webpage has multiple <title> tags. Consider using only one tag to describe the purpose of this webpage. <p>`,
+  SUCCESS: `This webpage has only one <title> tag. `,
+  ERROR: `This webpage has multiple <title> tags. Consider using only one tag to describe the purpose of this webpage. `,
 };
 
 checklistItems.viewportZoom = {
-	SUCCESS: `<p>This webpage has either no or an acceptable viewport zoom. </p>`,
-	ERROR: `<p>This webpage has either disabled or an unacceptable viewport zooms. <p>`,
+  SUCCESS: `This webpage has either no or an acceptable viewport zoom. `,
+  ERROR: `This webpage has either disabled or an unacceptable viewport zooms. `,
 };
 
 checklistItems.langAttribute = {
-	SUCCESS: `<p>This webpage has an identification of the language.</p>`,
-	ERROR: `<p>This webpage has no identification of the language.</p>`,
-};
-
-checklistItems.landmarkElements = {
-	SUCCESS: `<p>This webpage has landmark elements.</p>`,
-	ERROR: `<p>This webpage has no landmark elements.</p>`,
+  SUCCESS: `This webpage has an identification of the language.`,
+  ERROR: `This webpage has no identification of the language.`,
 };
 
 module.exports = {
-	checklistItems,
-	SUCCESS,
-	ERROR,
+  checklistItems,
+  SUCCESS,
+  ERROR,
 };

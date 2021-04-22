@@ -1,31 +1,24 @@
-const oneTitle = async ($) => {
-	const titles = $("title").get();
-	return titles.length === 1;
+const oneTitle = ($) => {
+  const titles = $('title').get();
+  return titles.length === 1;
 };
 
-const viewportZoom = async ($) => {
-	const viewport = $('meta[name="viewport"]').attr("content");
-	return !(
-		viewport.includes("user-scalable=no") &&
-		viewport.includes("user-scalable = no")
-	);
+const viewportZoom = ($) => {
+  const viewport = $('meta[name="viewport"]').attr('content');
+  return !(
+    viewport.includes('user-scalable=no') &&
+    viewport.includes('user-scalable = no')
+  );
 };
 
-const langAttribute = async ($) => {
-	const htmlAttr = $("html").attr("lang");
-	return !!htmlAttr;
-};
-
-const landmarkElements = async ($) => {
-	const landmark = $(
-		"section, nav, article, aside, header, footer, main"
-	).get();
-	landmark.length ? true : false;
+const langAttribute = ($) => {
+  const htmlAttr = $('html').attr('lang');
+  return !!htmlAttr;
 };
 
 module.exports = {
-	oneTitle,
-	viewportZoom,
-	langAttribute,
-	landmarkElements,
+  oneTitle,
+  viewportZoom,
+  langAttribute,
+  landmarkElements,
 };
