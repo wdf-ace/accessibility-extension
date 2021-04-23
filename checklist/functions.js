@@ -6,8 +6,8 @@ const oneTitle = ($) => {
 const viewportZoom = ($) => {
   const viewport = $('meta[name="viewport"]').attr('content');
   return !(
-    viewport.includes('user-scalable=no') &&
-    viewport.includes('user-scalable = no')
+    viewport?.includes('user-scalable=no') &&
+    viewport?.includes('user-scalable = no')
   );
 };
 
@@ -16,9 +16,30 @@ const langAttribute = ($) => {
   return !!htmlAttr;
 };
 
+const landmarkElements = ($) => {
+  const landmark = $(
+    'section, nav, article, aside, header, footer, main'
+  ).get();
+  console.log('landmark', landmark);
+  return landmark.length > 0;
+};
+
+function ariaLandmarks($) {
+  const ariaElm = $('*').filter(function (i, elm) {
+    return $(this).attr('aria-label');
+  });
+
+  console.log('type of ariaElm', typeof ariaElm);
+  console.log('ariaElm', ariaElm);
+  console.log('ariaElm length', ariaElm.length);
+
+  return !!ariaElm.length;
+}
+
 module.exports = {
   oneTitle,
   viewportZoom,
   langAttribute,
   landmarkElements,
+  ariaLandmarks,
 };

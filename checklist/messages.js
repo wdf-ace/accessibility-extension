@@ -22,6 +22,16 @@ checklistItems.langAttribute = {
   ERROR: `This webpage has no identification of the language.`,
 };
 
+checklistItems.landmarkElements = {
+  SUCCESS: `This webpage has landmark elements.`,
+  ERROR: `This webpage has no landmark elements.`,
+};
+
+checklistItems.ariaLandmarks = {
+  SUCCESS: `This webpage has more than one 'aria-label' attribute.`,
+  ERROR: `This webpage has no 'aria-label' attribute.`,
+};
+
 module.exports = {
   checklistItems,
   SUCCESS,

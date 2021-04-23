@@ -1,18 +1,18 @@
 const cheerio = require('cheerio');
 const { messages, SUCCESS, ERROR } = require('../checklist');
 
-function getHtml(){
+function getHtml() {
   return document.getElementsByTagName('html')[0].outerHTML;
 }
 
 async function applyChecklist(checklist) {
   //get the website's html and load into Cheerio
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   //nested array and object destructuring with aliasing
-  const [{result: html}] = await chrome.scripting.executeScript({
-    target: {tabId: tab.id}, 
-    function: getHtml
+  const [{ result: html }] = await chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    function: getHtml,
   });
 
   const $ = cheerio.load(html.toString());
@@ -23,6 +23,7 @@ async function applyChecklist(checklist) {
   */
   for (const item in checklist) {
     const success = checklist[item]($);
+    console.log('success?', item, success);
     responses[item] = messages[item][success ? SUCCESS : ERROR];
   }
 
