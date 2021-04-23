@@ -1,31 +1,45 @@
-const oneTitle = async ($) => {
-	const titles = $("title").get();
-	return titles.length === 1;
+const oneTitle = ($) => {
+  const titles = $('title').get();
+  return titles.length === 1;
 };
 
-const viewportZoom = async ($) => {
-	const viewport = $('meta[name="viewport"]').attr("content");
-	return !(
-		viewport.includes("user-scalable=no") &&
-		viewport.includes("user-scalable = no")
-	);
+const viewportZoom = ($) => {
+  const viewport = $('meta[name="viewport"]').attr('content');
+  return !(
+    viewport?.includes('user-scalable=no') &&
+    viewport?.includes('user-scalable = no')
+  );
 };
 
-const langAttribute = async ($) => {
-	const htmlAttr = $("html").attr("lang");
-	return !!htmlAttr;
+const langAttribute = ($) => {
+  const htmlAttr = $('html').attr('lang');
+  return !!htmlAttr;
 };
 
-const landmarkElements = async ($) => {
-	const landmark = $(
-		"section, nav, article, aside, header, footer, main"
-	).get();
-	landmark.length ? true : false;
+const landmarkElements = ($) => {
+  const landmark = $(
+    'section, nav, article, aside, header, footer, main'
+  ).get();
+  console.log('landmark', landmark);
+  return landmark.length > 0;
 };
+
+function ariaLandmarks($) {
+  const ariaElm = $('*').filter(function (i, elm) {
+    return $(this).attr('aria-label');
+  });
+
+  console.log('type of ariaElm', typeof ariaElm);
+  console.log('ariaElm', ariaElm);
+  console.log('ariaElm length', ariaElm.length);
+
+  return !!ariaElm.length;
+}
 
 module.exports = {
-	oneTitle,
-	viewportZoom,
-	langAttribute,
-	landmarkElements,
+  oneTitle,
+  viewportZoom,
+  langAttribute,
+  landmarkElements,
+  ariaLandmarks,
 };
