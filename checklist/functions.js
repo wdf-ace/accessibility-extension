@@ -36,10 +36,22 @@ function ariaLandmarks($) {
   return !!ariaElm.length;
 }
 
+const imgAltAttributes = ($) => {
+  const numImg = $('img');
+  const altAttr = $('img').filter((i, elm) => {
+    return $(elm).attr('alt');
+  });
+  const emptyAltAttr = $('img').filter((i, elm) => {
+    return $(elm).attr('alt') === '';
+  });
+  return numImg.length === altAttr.length + emptyAltAttr.length;
+};
+
 module.exports = {
   oneTitle,
   viewportZoom,
   langAttribute,
   landmarkElements,
   ariaLandmarks,
+  imgAltAttributes,
 };

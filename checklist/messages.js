@@ -32,6 +32,11 @@ checklistItems.ariaLandmarks = {
   ERROR: `This webpage has no 'aria-label' attribute.`,
 };
 
+checklistItems.imgAltAttributes = {
+  SUCCESS: `This webpage has 'alt' attributes on every img element.`,
+  ERROR: `This webpage does not have 'alt' attributes on every img element.`,
+};
+
 module.exports = {
   checklistItems,
   SUCCESS,
