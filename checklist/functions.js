@@ -39,12 +39,9 @@ function ariaLandmarks($) {
 const imgAltAttributes = ($) => {
   const numImg = $('img');
   const altAttr = $('img').filter((i, elm) => {
-    return $(elm).attr('alt');
+    return $(elm).attr('alt') || $(elm).attr('alt') === '';
   });
-  const emptyAltAttr = $('img').filter((i, elm) => {
-    return $(elm).attr('alt') === '';
-  });
-  return numImg.length === altAttr.length + emptyAltAttr.length;
+  return numImg.length === altAttr.length;
 };
 
 module.exports = {
