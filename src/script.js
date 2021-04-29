@@ -22,7 +22,7 @@ async function applyChecklist(checklist) {
     invoke each function in checklist{} and if successful, save the SUCCESS value from messages{} in the responses{}.
   */
   for (const item in checklist) {
-    const success = checklist[item]($);s
+    const success = checklist[item]($);
     responses[item] = messages[item][success ? SUCCESS : ERROR];
   }
 

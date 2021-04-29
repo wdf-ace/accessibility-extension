@@ -20,7 +20,6 @@ const landmarkElements = ($) => {
   const landmark = $(
     'section, nav, article, aside, header, footer, main'
   ).get();
-  console.log('landmark', landmark);
   return landmark.length > 0;
 };
 
@@ -42,10 +41,13 @@ const imgAltAttributes = ($) => {
   return numImg.length === altAttr.length + emptyAltAttr.length;
 };
 
-const autofocus =  ($) => {
-  const autofocusElems =  $('*').attr('autofocus')
-  console.log(autofocusElems)
-  return autofocusElems.length
+const tabIndex =  ($) => {
+  const tabIndexElems =  $('*').filter((i, elem) => $(elem).attr('tabindex'))
+  for(let elem of tabIndexElems){
+    const tabIndexVal = elem.attribs.tabindex;
+    if(tabIndexVal !== "0" && tabIndexVal !== "-1") return false
+  }
+  return true;
 }
 
 module.exports = {
@@ -55,5 +57,5 @@ module.exports = {
   landmarkElements,
   ariaLandmarks,
   imgAltAttributes,
-  autofocus
+  tabIndex
 };

@@ -37,9 +37,9 @@ checklistItems.imgAltAttributes = {
   ERROR: `This webpage does not have 'alt' attributes on every img element.`,
 };
 
-checklistItems.autofocus = {
-  SUCCESS: `NO AUTOFOCUS.`,
-  ERROR: `autofocus :(`,
+checklistItems.tabIndex = {
+  SUCCESS: `This webpage has no elements with an out-of-bounds tabindex value.`,
+  ERROR: `This webpage has elements with a tabindex that have an out-of-bounds value.`,
 }
 
 module.exports = {
