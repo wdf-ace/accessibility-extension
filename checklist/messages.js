@@ -42,6 +42,16 @@ checklistItems.tabIndex = {
   ERROR: `This webpage has elements with a tabindex that have an out-of-bounds value.`,
 }
 
+checklistItems.titleAttr = {
+  SUCCESS: `This webpage has no elements with the title attribute, or has an iframe element with the title attribute.`,
+  ERROR: `This webpage has elements with the title attribute.`,
+}
+
+checklistItems.visibleFocus = {
+  SUCCESS: `This webpage has no styling that interferes with the visible focus of interactive elements.`,
+  ERROR: `This webpage has elements with styling that interferes with the visible focus of interactive elements.`,
+}
+
 module.exports = {
   checklistItems,
   SUCCESS,

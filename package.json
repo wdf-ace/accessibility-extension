@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --watch --progress",
-    "test" : "mocha ./tests"
+    "test": "mocha ./tests"
   },
   "repository": {
     "type": "git",
@@ -19,8 +19,10 @@
   "homepage": "https://github.com/wdf-ace/accessibility-extension#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.5",
+    "lodash": "^4.17.21",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "victory": "^35.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.13.15",
