@@ -33,12 +33,17 @@ function ariaLandmarks($) {
 const imgAltAttributes = ($) => {
   const numImg = $('img');
   const altAttr = $('img').filter((i, elm) => {
-    return $(elm).attr('alt');
+    return $(elm).attr('alt') || $(elm).attr('alt') === '';
   });
-  const emptyAltAttr = $('img').filter((i, elm) => {
-    return $(elm).attr('alt') === '';
+  return numImg.length === altAttr.length;
+};
+
+const autofocusAttributes = ($) => {
+  const autofocusElm = $('*').filter(function (i, elm) {
+    return $(this).attr('autofocus');
   });
-  return numImg.length === altAttr.length + emptyAltAttr.length;
+
+  return !autofocusElm.length;
 };
 
 const tabIndex = ($) => {
@@ -73,5 +78,6 @@ module.exports = {
   imgAltAttributes,
   tabIndex,
   titleAttr,
-  visibleFocus
+  visibleFocus,
+  autofocusAttributes,
 };

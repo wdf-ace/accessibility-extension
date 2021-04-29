@@ -51,6 +51,10 @@ checklistItems.visibleFocus = {
   SUCCESS: `This webpage has no styling that interferes with the visible focus of interactive elements.`,
   ERROR: `This webpage has elements with styling that interferes with the visible focus of interactive elements.`,
 }
+checklistItems.autofocusAttributes = {
+  SUCCESS: `This webpage has no element, which has 'autofocus' attribute.`,
+  ERROR: `This webpage has one or more elements, which has 'autofocus' attribute.`,
+};
 
 module.exports = {
   checklistItems,
