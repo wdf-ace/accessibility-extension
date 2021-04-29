@@ -12,6 +12,7 @@ export const Popup = (props) => {
 
   return (
     <div>
+      <h1>Accessibility Results</h1>
       {
         Object.entries(response).map((check) => {
           return <p>{check[1]}</p>

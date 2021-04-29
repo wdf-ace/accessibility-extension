@@ -37,6 +37,11 @@ checklistItems.imgAltAttributes = {
   ERROR: `This webpage does not have 'alt' attributes on every img element.`,
 };
 
+checklistItems.autofocus = {
+  SUCCESS: `NO AUTOFOCUS.`,
+  ERROR: `autofocus :(`,
+}
+
 module.exports = {
   checklistItems,
   SUCCESS,
