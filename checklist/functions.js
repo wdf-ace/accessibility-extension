@@ -29,10 +29,6 @@ function ariaLandmarks($) {
     return $(this).attr('aria-label');
   });
 
-  console.log('type of ariaElm', typeof ariaElm);
-  console.log('ariaElm', ariaElm);
-  console.log('ariaElm length', ariaElm.length);
-
   return !!ariaElm.length;
 }
 
@@ -44,6 +40,14 @@ const imgAltAttributes = ($) => {
   return numImg.length === altAttr.length;
 };
 
+const autofocusAttributes = ($) => {
+  const autofocusElm = $('*').filter(function (i, elm) {
+    return $(this).attr('autofocus');
+  });
+
+  return !autofocusElm.length;
+};
+
 module.exports = {
   oneTitle,
   viewportZoom,
@@ -51,4 +55,5 @@ module.exports = {
   landmarkElements,
   ariaLandmarks,
   imgAltAttributes,
+  autofocusAttributes,
 };
