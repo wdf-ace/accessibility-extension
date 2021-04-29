@@ -20,7 +20,6 @@ const landmarkElements = ($) => {
   const landmark = $(
     'section, nav, article, aside, header, footer, main'
   ).get();
-  console.log('landmark', landmark);
   return landmark.length > 0;
 };
 
@@ -28,7 +27,6 @@ function ariaLandmarks($) {
   const ariaElm = $('*').filter(function (i, elm) {
     return $(this).attr('aria-label');
   });
-
   return !!ariaElm.length;
 }
 
@@ -48,6 +46,29 @@ const autofocusAttributes = ($) => {
   return !autofocusElm.length;
 };
 
+const tabIndex = ($) => {
+  const tabIndexElems =  $('*').filter((i, elem) => $(elem).attr('tabindex'))
+  for(let elem of tabIndexElems){
+    const tabIndexVal = elem.attribs.tabindex;
+    if(tabIndexVal !== "0" && tabIndexVal !== "-1") return false
+  }
+  return true;
+}
+
+const titleAttr = ($) => {
+  const titleAttrElems =  $('*').filter((i, elem) => $(elem).attr('title'))
+  for(let elem of titleAttrElems){
+    if(elem.name !== "iframe") return false
+  }
+  return true;
+}
+
+const visibleFocus = ($) => {
+  /*
+    check the css styling that there is no outline / border for links and buttons (interactable elements) and :focus psuedo class does not have outline:none
+  */
+}
+
 module.exports = {
   oneTitle,
   viewportZoom,
@@ -55,5 +76,8 @@ module.exports = {
   landmarkElements,
   ariaLandmarks,
   imgAltAttributes,
+  tabIndex,
+  titleAttr,
+  visibleFocus,
   autofocusAttributes,
 };

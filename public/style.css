@@ -1,0 +1,11 @@
+#app {
+    width: 500px;
+}
+
+.passed {
+    color: green;
+}
+
+.failed, .error {
+    color: red;
+}

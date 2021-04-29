@@ -37,6 +37,20 @@ checklistItems.imgAltAttributes = {
   ERROR: `This webpage does not have 'alt' attributes on every img element.`,
 };
 
+checklistItems.tabIndex = {
+  SUCCESS: `This webpage has no elements with an out-of-bounds tabindex value.`,
+  ERROR: `This webpage has elements with a tabindex that have an out-of-bounds value.`,
+}
+
+checklistItems.titleAttr = {
+  SUCCESS: `This webpage has no elements with the title attribute, or has an iframe element with the title attribute.`,
+  ERROR: `This webpage has elements with the title attribute.`,
+}
+
+checklistItems.visibleFocus = {
+  SUCCESS: `This webpage has no styling that interferes with the visible focus of interactive elements.`,
+  ERROR: `This webpage has elements with styling that interferes with the visible focus of interactive elements.`,
+}
 checklistItems.autofocusAttributes = {
   SUCCESS: `This webpage has no element, which has 'autofocus' attribute.`,
   ERROR: `This webpage has one or more elements, which has 'autofocus' attribute.`,
