@@ -34,7 +34,7 @@ export const Popup = (props) => {
     <div>
       <h1>Accessibility Results</h1>
       {responsesByPass.length && (
-        <div>
+        <div className="chartContainer">
           <svg viewBox="0 0 250 250">
             <VictoryPie
               standalone={false}
@@ -44,8 +44,9 @@ export const Popup = (props) => {
                 { x: 'Pass', y: calcPercentage() },
                 { x: 'Fail', y: 100 - calcPercentage() },
               ]}
-              innerRadius={75}
-              labelRadius={75}
+              innerRadius={50}
+              labelRadius={90}
+              labels={() => null}
               style={{
                 data: {
                   fill: ({ datum }) => {
