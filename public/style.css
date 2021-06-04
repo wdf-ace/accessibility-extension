@@ -1,11 +1,21 @@
 #app {
-    width: 500px;
+  width: 500px;
 }
 
 .passed {
-    color: green;
+  color: green;
 }
 
-.failed, .error {
-    color: red;
+.failed,
+.error {
+  color: red;
+}
+
+svg {
+  height: 150px;
+}
+
+.chartContainer {
+    display: flex;
+    justify-content: center;
 }
