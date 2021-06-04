@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom';
 import applyChecklist from './script';
 import { checklist } from '../checklist';
 import { VictoryPie, VictoryLabel } from 'victory';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCheckCircle,
+  faTimesCircle,
+} from '@fortawesome/free-solid-svg-icons';
 
 export const Popup = (props) => {
   const [responses, setResponses] = useState({});
@@ -32,9 +37,13 @@ export const Popup = (props) => {
 
   return (
     <div>
-      <h1>Accessibility Results</h1>
+      <div id="logo">
+        <img src={'../public/logo/Wide_Logo.png'} />
+      </div>
+
       {responsesByPass.length && (
         <div className="chartContainer">
+          <h1>Accessibility Results</h1>
           <svg viewBox="0 0 250 250">
             <VictoryPie
               standalone={false}
@@ -51,9 +60,9 @@ export const Popup = (props) => {
                 data: {
                   fill: ({ datum }) => {
                     let color;
-                    if (datum.y > 80) color = '#338333';
-                    else if (datum.y > 65) color = '#ff8b3d';
-                    else color = 'red';
+                    if (datum.y > 80) color = '#3ea990';
+                    else if (datum.y > 65) color = '#FAC479';
+                    else color = '#ee5d52';
                     return datum.x === 'Pass' ? color : 'transparent';
                   },
                 },
@@ -73,9 +82,19 @@ export const Popup = (props) => {
 
       {Object.entries(responses).map((check) => {
         if (check[1].SUCCESS) {
-          return <p className="passed">PASSED: {check[1].SUCCESS}</p>;
+          return (
+            <div className="message">
+              <FontAwesomeIcon icon={faCheckCircle} className="passed" />
+              <p> {check[1].SUCCESS}</p>
+            </div>
+          );
         }
-        return <p className="failed">ERROR: {check[1].ERROR}</p>;
+        return (
+          <div className="message">
+            <FontAwesomeIcon icon={faTimesCircle} className="failed" />
+            <p>{check[1].ERROR}</p>
+          </div>
+        );
       })}
     </div>
   );

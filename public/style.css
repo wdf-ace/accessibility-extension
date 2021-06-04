@@ -3,19 +3,44 @@
 }
 
 .passed {
-  color: green;
+  color: #3ea990;
+  margin: 10px;
+}
+
+.failed {
+  margin: 10px;
 }
 
 .failed,
 .error {
-  color: red;
+  color: #ee5d52;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
 }
 
 svg {
   height: 150px;
 }
 
+#logo {
+  width: 150px;
+}
+
+#logo img {
+  width: 100%;
+}
+
 .chartContainer {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.message {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }

@@ -5,7 +5,12 @@
   "manifest_version": 3,
   "permissions": ["activeTab", "tabs", "scripting"],
   "action": {
-    "default_popup": "/public/popup.html"
+    "default_popup": "/public/popup.html",
+    "default_icon": "./public/logo/Only_Shape_Logo.png",
+    "icons": {
+      "16": "./public/logo/Only_Shape_Logo.png",
+      "48": "./public/logo/Only_Shape_Logo.png",
+      "128": "./public/logo/Only_Shape_Logo.png"
+    }
   }
-
 }
