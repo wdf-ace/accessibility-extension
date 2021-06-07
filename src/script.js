@@ -1,5 +1,6 @@
 const cheerio = require('cheerio');
 const { messages, SUCCESS, ERROR } = require('../checklist');
+let url = '';
 
 function getHtml() {
   return document.getElementsByTagName('html')[0].outerHTML;
@@ -8,6 +9,8 @@ function getHtml() {
 async function applyChecklist(checklist) {
   //get the website's html and load into Cheerio
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  url = tab.url; 
 
   //nested array and object destructuring with aliasing
   const [{ result: html }] = await chrome.scripting.executeScript({
@@ -32,7 +35,7 @@ async function applyChecklist(checklist) {
 }
 
 export default applyChecklist;
-
+module.exports = url;
 
 
 //--------------Old Functions-----------------------------------------------

@@ -28,8 +28,8 @@ checklistItems.landmarkElements = {
 };
 
 checklistItems.ariaLandmarks = {
-  SUCCESS: `This webpage has more than one 'aria-label' attribute.`,
-  ERROR: `This webpage has no 'aria-label' attribute.`,
+  SUCCESS: `This webpage has more than one 'aria' attribute.`,
+  ERROR: `This webpage has no 'aria' attributes.`,
 };
 
 checklistItems.imgAltAttributes = {

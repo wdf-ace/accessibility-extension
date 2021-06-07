@@ -1,3 +1,6 @@
+const url = require('../src/script');
+const nodeW3CValidator = require('node-w3c-validator');
+
 const oneTitle = ($) => {
   const titles = $('title').get();
   return titles.length === 1;
@@ -23,11 +26,15 @@ const landmarkElements = ($) => {
   return landmark.length > 0;
 };
 
+// filter(function (i, elm) {
+//   return $(this).attr('aria-label');
+// });
 function ariaLandmarks($) {
-  const ariaElm = $('*').filter(function (i, elm) {
-    return $(this).attr('aria-label');
-  });
-  return !!ariaElm.length;
+  let ariaLandmarksExist = false
+  const ariaElm = $('*').each(function () {
+    ariaLandmarksExist = Object.keys(this.attribs).some(attr => attr.includes('aria')) || ariaLandmarksExist;
+  })
+  return ariaLandmarksExist;
 }
 
 const imgAltAttributes = ($) => {
@@ -63,6 +70,11 @@ const titleAttr = ($) => {
   return true;
 }
 
+const validHtml = ($) => {
+  console.log('URL', url, url.url, typeof url.url);
+  console.log(nodeW3CValidator(url.url))
+}
+
 const visibleFocus = ($) => {
   /*
     check the css styling that there is no outline / border for links and buttons (interactable elements) and :focus psuedo class does not have outline:none
@@ -80,4 +92,5 @@ module.exports = {
   titleAttr,
   visibleFocus,
   autofocusAttributes,
+  validHtml
 };
